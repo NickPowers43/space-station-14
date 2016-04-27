@@ -151,19 +151,10 @@ namespace SS14.Server.Services.Map
         public sealed class TileCollection : ITileCollection
         {
             private readonly MapManager mm;
-            private AABBi aabb;
 
             internal TileCollection(MapManager mm)
             {
                 this.mm = mm;
-            }
-
-            public AABBi AABB
-            {
-                get
-                {
-                    return aabb;
-                }
             }
 
             public Tile this[Vector2f pos]
@@ -193,8 +184,6 @@ namespace SS14.Server.Services.Map
                 }
                 set
                 {
-                    aabb.Fit(new Vector2i(x, y));
-
                     Vector2i chunkPos = new Vector2i(
                         (int)Math.Floor((float)x / ChunkSize),
                         (int)Math.Floor((float)y / ChunkSize)

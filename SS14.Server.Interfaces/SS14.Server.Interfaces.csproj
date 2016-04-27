@@ -164,6 +164,8 @@
     <Compile Include="GameObject\IWallMountedComponent.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Atmosphere\IAtmosphere.cs" />
+    <Compile Include="Atmosphere\IAtmosphereManager.cs" />
     <Compile Include="Map\Chunk.cs" />
     <Compile Include="Map\ITileCollection.cs" />
     <Compile Include="Map\ITileDefinition.cs" />
