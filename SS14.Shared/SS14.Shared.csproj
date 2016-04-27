@@ -103,6 +103,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AABBi.cs" />
     <Compile Include="AdminPermissions.cs">
       <SubType>Code</SubType>
     </Compile>
