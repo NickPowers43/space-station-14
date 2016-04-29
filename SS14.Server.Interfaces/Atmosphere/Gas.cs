@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SS14.Server.Services.Atmosphere
+namespace SS14.Server.Interfaces.Atmosphere
 {
     public struct Gas
     {
@@ -108,7 +108,7 @@ namespace SS14.Server.Services.Atmosphere
                 return h2o;
             }
         }
-        
+
         public float Moles
         {
             get
@@ -163,7 +163,7 @@ namespace SS14.Server.Services.Atmosphere
             n2 *= scale;
             h2o *= scale;
         }
-        
+
         private void CalculatePressure(float sa)
         {
             p = t * total / sa;

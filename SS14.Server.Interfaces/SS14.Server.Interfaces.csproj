@@ -137,6 +137,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Atmosphere\Gas.cs" />
     <Compile Include="Chat\IChatManager.cs">
       <SubType>Code</SubType>
     </Compile>
