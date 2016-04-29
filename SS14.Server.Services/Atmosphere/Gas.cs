@@ -24,6 +24,49 @@ namespace SS14.Server.Services.Atmosphere
         private float h2o;
         private float total;//sum of each gas
 
+        public float Temperature
+        {
+            get
+            {
+                return t;
+            }
+            set
+            {
+                float scale = value / t;
+
+                p *= scale;
+                t = value;
+            }
+        }
+        public float Pressure
+        {
+            get
+            {
+                return p;
+            }
+            set
+            {
+                float scale = value / p;
+
+                p = value;
+                t *= scale;
+            }
+        }
+        public float Volume
+        {
+            get
+            {
+                return v;
+            }
+            set
+            {
+                float sa = SurfaceAreaOfASphere(v);
+
+                CalculatePressure(sa);
+                v = value;
+            }
+        }
+
         public float O2
         {
             get
@@ -66,32 +109,19 @@ namespace SS14.Server.Services.Atmosphere
             }
         }
         
-        public float Temperature
+        public float Moles
         {
             get
             {
-                return t;
+                return total;
             }
             set
             {
-                float scale = value / t;
-                
-                p *= scale;
-                t = value;
-            }
-        }
-        public float Pressure
-        {
-            get
-            {
-                return p;
-            }
-            set
-            {
-                float scale = value / p;
+                float scale = value / total;
 
-                p = value;
-                t *= scale;
+                ScaleMoles(scale);
+                p *= scale;
+                total = value;
             }
         }
         public float Energy
@@ -107,35 +137,6 @@ namespace SS14.Server.Services.Atmosphere
                 //scale temperature and pressure to match new energy level
                 t *= scale;
                 p *= scale;
-            }
-        }
-        public float Volume
-        {
-            get
-            {
-                return v;
-            }
-            set
-            {
-                float sa = SurfaceAreaOfASphere(v);
-
-                CalculatePressure(sa);
-                v = value;
-            }
-        }
-        public float Moles
-        {
-            get
-            {
-                return total;
-            }
-            set
-            {
-                float scale = value / total;
-
-                ScaleMoles(scale);
-                p *= scale;
-                total = value;
             }
         }
 
@@ -237,7 +238,7 @@ namespace SS14.Server.Services.Atmosphere
             return (float)(SPHERE_AREA_CONSTANT * Math.Pow(6.0d * v, 2.0d / 3.0d));
         }
 
-        private static void Testing()
+        public static void Testing()
         {
             Gas g0 = new Gas(
                 1,
