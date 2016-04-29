@@ -150,7 +150,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Atmosphere\AtmosphereManager.cs" />
+    <Compile Include="Atmosphere\MapAtmosphere.cs" />
+    <Compile Include="Atmosphere\BalancedAtmosphere.cs" />
+    <Compile Include="Atmosphere\BaseAtmosphere.cs" />
     <Compile Include="Chat\ChatManager.cs">
       <SubType>Code</SubType>
     </Compile>
