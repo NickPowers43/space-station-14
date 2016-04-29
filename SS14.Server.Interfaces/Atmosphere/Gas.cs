@@ -22,6 +22,7 @@ namespace SS14.Server.Interfaces.Atmosphere
         private float co;
         private float n2;
         private float h2o;
+        private float toxins;
         private float total;//sum of each gas
 
         public float Temperature
@@ -108,6 +109,13 @@ namespace SS14.Server.Interfaces.Atmosphere
                 return h2o;
             }
         }
+        public float Toxins
+        {
+            get
+            {
+                return toxins;
+            }
+        }
 
         public float Moles
         {
@@ -140,7 +148,7 @@ namespace SS14.Server.Interfaces.Atmosphere
             }
         }
 
-        public Gas(float o2, float co2, float co, float n2, float h2o, float v, float sa, float t)
+        public Gas(float o2, float co2, float co, float n2, float h2o, float toxins, float v, float sa, float t)
         {
             total = 0.0f;
             total += this.o2 = o2;
@@ -148,6 +156,7 @@ namespace SS14.Server.Interfaces.Atmosphere
             total += this.co = co;
             total += this.n2 = n2;
             total += this.h2o = h2o;
+            total += this.toxins = toxins;
 
             this.p = 0.0f;
             this.v = v;
@@ -206,6 +215,7 @@ namespace SS14.Server.Interfaces.Atmosphere
                     co * c,
                     n2 * c,
                     h2o * c,
+                    toxins * c,
                     volume, SurfaceAreaOfASphere(volume), t);
 
                 //redefine RAW values of this container. P and T will not change
@@ -246,12 +256,14 @@ namespace SS14.Server.Interfaces.Atmosphere
                 0,
                 0,
                 0,
+                0,
                 1,
                 6,
                 1);
 
             Gas g1 = new Gas(
                 1,
+                0,
                 0,
                 0,
                 0,

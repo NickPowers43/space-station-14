@@ -18,6 +18,7 @@ namespace SS14.Server.Interfaces.Atmosphere
         float CO { get; }
         float N2 { get; }
         float H2O { get; }
+        float Toxins { get; }
 
         void Mix(ref Gas src);
         void Update(float frameTime);

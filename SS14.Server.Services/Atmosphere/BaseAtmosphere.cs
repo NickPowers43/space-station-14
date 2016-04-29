@@ -46,6 +46,13 @@ namespace SS14.Server.Services.Atmosphere
                 return gas.H2O;
             }
         }
+        public float Toxins
+        {
+            get
+            {
+                return gas.Toxins;
+            }
+        }
 
         public float Moles
         {
@@ -76,7 +83,7 @@ namespace SS14.Server.Services.Atmosphere
             }
         }
 
-        public BaseAtmosphere(float o2, float co2, float co, float n2, float h2o, float v, float sa, float t)
+        public BaseAtmosphere(float o2, float co2, float co, float n2, float h2o, float toxins, float v, float sa, float t)
         {
             gas = new Gas(
                 o2,
@@ -84,6 +91,7 @@ namespace SS14.Server.Services.Atmosphere
                 co,
                 n2,
                 h2o,
+                toxins,
                 v,
                 sa,
                 t);
