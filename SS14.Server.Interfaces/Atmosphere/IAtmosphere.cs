@@ -8,10 +8,19 @@ namespace SS14.Server.Interfaces.Atmosphere
 {
     public interface IAtmosphere
     {
-        //get pressure
-        //get temperature
-        //get concentration of gas x (H2O, O2, CO2, N2, N2O, etc...)
+        float Pressure { get; }
+        float Temperature { get; }
+        float Volume { get; }
+        float Moles { get; }
 
-        //get/put gas x in amount y
+        float O2 { get; }
+        float CO2 { get; }
+        float CO { get; }
+        float N2 { get; }
+        float H2O { get; }
+
+        void Mix(ref Gas src);
+        void Update(float frameTime);
+        void Transfer(IAtmosphere other, float area);
     }
 }
