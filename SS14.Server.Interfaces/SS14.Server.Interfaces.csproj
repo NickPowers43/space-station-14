@@ -166,7 +166,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Atmosphere\IAtmosphere.cs" />
-    <Compile Include="Atmosphere\IAtmosphereManager.cs" />
+    <Compile Include="Atmosphere\IMapAtmosphere.cs" />
     <Compile Include="Map\Chunk.cs" />
     <Compile Include="Map\ITileCollection.cs" />
     <Compile Include="Map\ITileDefinition.cs" />

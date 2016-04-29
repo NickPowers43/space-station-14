@@ -8,7 +8,7 @@ using SS14.Server.Interfaces.Map;
 
 namespace SS14.Server.Interfaces.Atmosphere
 {
-    public interface IAtmoshpereManager
+    public interface IMapAtmosphere
     {
         void Initialize(ISS14Server server);
 
