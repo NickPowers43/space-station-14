@@ -17,12 +17,17 @@ namespace SS14.Server.Services.Atmosphere
         IAtmosphere globalAtmosphere;
         AABBi aabb;
 
-        public void Initialize(ISS14Server server)
+        public MapAtmosphere(IMapManager mm)
         {
-            server.GetMap().TileChanged += new TileChangedEventHandler(HandleTileChanged);
+            Initialize(mm);
+        }
+
+        public void Initialize(IMapManager mm)
+        {
+            mm.TileChanged += new TileChangedEventHandler(HandleTileChanged);
 
             //Initialize a global atmosphere with a healthy mixture of gases
-            globalAtmosphere = new BalancedAtmosphere(800,5,0,200,2,100000,100400,1);
+            globalAtmosphere = new BalancedAtmosphere(800,5,0,200,2,0,100000,100400,1);
         }
 
         void HandleTileChanged(TileRef tileRef, Tile oldTile)
@@ -43,6 +48,11 @@ namespace SS14.Server.Services.Atmosphere
         public IAtmosphere AtmosphereAt(Vector2f pos)
         {
             return globalAtmosphere;
+        }
+
+        public Vector2f AtmosphereVelocityAt(Vector2f pos)
+        {
+            return new Vector2f(0, 0);
         }
     }
 }

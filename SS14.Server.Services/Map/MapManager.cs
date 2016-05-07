@@ -3,6 +3,8 @@ using SFML.Graphics;
 using SFML.System;
 using SS14.Server.Interfaces.Map;
 using SS14.Server.Interfaces.Network;
+using SS14.Server.Interfaces.Atmosphere;
+using SS14.Server.Services.Atmosphere;
 using SS14.Server.Services.Log;
 using SS14.Shared;
 using SS14.Shared.IoC;
@@ -18,6 +20,8 @@ namespace SS14.Server.Services.Map
 {
     public class MapManager : IMapManager
     {
+        private IMapAtmosphere mapAtmosphere;
+
         private Dictionary<Vector2i, Chunk> chunks = new Dictionary<Vector2i, Chunk>();
         private static readonly int ChunkSize = Chunk.ChunkSize;
 
@@ -26,6 +30,7 @@ namespace SS14.Server.Services.Map
 
         public MapManager()
         {
+            mapAtmosphere = new MapAtmosphere(this);
             tileIndexer = new TileCollection(this);
             NewMap();
         }
@@ -147,6 +152,7 @@ namespace SS14.Server.Services.Map
 
         private TileCollection tileIndexer;
         public ITileCollection Tiles { get { return tileIndexer; } }
+        public IMapAtmosphere Atmosphere { get { return mapAtmosphere; } }
 
         public sealed class TileCollection : ITileCollection
         {

@@ -3,6 +3,7 @@ using SFML.Graphics;
 using SFML.System;
 using SS14.Shared;
 using System.Collections.Generic;
+using SS14.Server.Interfaces.Atmosphere;
 
 namespace SS14.Server.Interfaces.Map
 {
@@ -29,5 +30,6 @@ namespace SS14.Server.Interfaces.Map
         TileRef GetTileRef(Vector2f pos);
         TileRef GetTileRef(int x, int y);
         ITileCollection Tiles { get; }
+        IMapAtmosphere Atmosphere { get; }
     }
 }

@@ -2,6 +2,7 @@
 using SS14.Server.GameObjects.Organs;
 using SS14.Server.Interfaces.Map;
 using SS14.Server.Interfaces.Player;
+using SS14.Server.Interfaces.Atmosphere;
 using SS14.Shared;
 using SS14.Shared.GameObjects;
 using SS14.Shared.GO;
@@ -79,28 +80,26 @@ namespace SS14.Server.GameObjects
             if (statuscomp == null)
                 return;
 
-            TileRef t = map.GetTileRef(Owner.GetComponent<TransformComponent>(ComponentFamily.Transform).Position);
+            var transform = Owner.GetComponent<TransformComponent>(ComponentFamily.Transform);
+            TileRef t = map.GetTileRef(transform.Position);
 
-            if (t.Tile.IsSpace)
+            var atm = map.Atmosphere.AtmosphereAt(transform.Position);
+
+            if (atm.Toxins / atm.Moles > 0.01f)
             {
-                statuscomp.AddEffect("Hypoxia", 5); //Y'all in space, you is asphyxiatin to death bitch
+                statuscomp.AddEffect("ToxinInhalation", 20);
             }
-            //else
-            //{
-            //    bool hasInternals = HasInternals();
-
-            //    if (t.GasCell.GasAmount(GasType.Toxin) > 0.01 && !hasInternals)
-            //        //too much toxin in the air, bro
-            //    {
-            //        statuscomp.AddEffect("ToxinInhalation", 20);
-            //    }
-            //    if (!hasInternals && t.GasCell.Pressure < 10 //Less than 10kPa
-            //        ||
-            //        (t.GasCell.GasAmount(GasType.Oxygen)/
-            //         t.GasCell.TotalGas) < 0.10f) //less than 10% oxygen
-            //        //Not enough oxygen in the mixture, or pressure is too low.
-            //        statuscomp.AddEffect("Hypoxia", 5);
-            //}
+            else
+            {
+                if (atm.O2 / atm.Moles > 0.5f && atm.Pressure > 1.0f)
+                {
+                    //everything within normal range
+                }
+                else
+                {
+                    statuscomp.AddEffect("Hypoxia", 5);
+                }
+            }
         }
 
         // TODO use state system

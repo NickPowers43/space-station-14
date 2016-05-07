@@ -11,7 +11,7 @@ namespace SS14.Server.Services.Atmosphere
     {
         List<GasPassage> gasPassages;
 
-        public BalancedAtmosphere(float o2, float co2, float co, float n2, float h2o, float v, float sa, float t) : base(o2, co2, co, n2, h2o, v, sa, t)
+        public BalancedAtmosphere(float o2, float co2, float co, float n2, float h2o, float toxins, float v, float sa, float t) : base(o2, co2, co, n2, h2o, toxins, v, sa, t)
         {
             gasPassages = new List<GasPassage>();
         }
